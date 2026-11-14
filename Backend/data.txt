@@ -1,0 +1,45 @@
+Bamboo cutlery set|Kitchen|499|🥢|92,90,88,70,85,75
+Stainless steel straws|Kitchen|299|🥤|80,85,90,60,78,95
+Beeswax food wraps|Kitchen|449|🐝|88,70,92,75,80,60
+Glass storage jars|Kitchen|899|🫙|70,92,80,50,60,95
+Cast iron skillet|Kitchen|1999|🍳|55,60,70,40,50,100
+Plastic cling film|Kitchen|149|🧻|10,5,15,20,30,5
+Compost bin|Kitchen|1299|♻️|90,85,70,65,80,80
+Coconut bowl set|Kitchen|599|🥥|93,80,85,80,88,70
+Disposable foam plates|Kitchen|99|🍽️|5,8,10,10,20,2
+Organic cotton tee|Fashion|899|👕|65,70,80,95,35,60
+Recycled PET jacket|Fashion|3499|🧥|60,92,75,70,60,85
+Hemp tote bag|Fashion|399|👜|85,75,90,80,75,85
+Fast-fashion polyester top|Fashion|349|👚|15,10,20,15,25,15
+Cork sandals|Fashion|1599|🩴|78,70,70,75,70,80
+Leather boots (conventional)|Fashion|4999|🥾|30,20,40,35,25,90
+Linen shirt|Fashion|1799|👔|75,60,85,80,60,75
+Solid shampoo bar|Personal Care|349|🧼|90,85,95,80,90,70
+Bamboo toothbrush|Personal Care|149|🪥|92,88,90,70,90,60
+Plastic razor pack|Personal Care|199|🪒|15,10,20,20,40,10
+Refillable deodorant|Personal Care|499|🧴|80,85,85,85,70,90
+Reef-safe sunscreen|Personal Care|699|🧴|70,60,70,90,65,50
+Aerosol body spray|Personal Care|299|💨|20,10,15,20,35,10
+Solar power bank|Electronics|2499|🔋|70,60,55,50,60,70
+Refurbished smartphone|Electronics|14999|📱|85,90,60,60,50,60
+Fairphone-style modular phone|Electronics|39999|📲|65,85,70,90,55,95
+LED bulb 4-pack|Electronics|399|💡|75,60,65,50,80,85
+Disposable vape|Electronics|799|💨|5,5,10,10,20,2
+Wireless earbuds (recycled)|Electronics|2999|🎧|55,70,60,55,50,45
+Organic cotton bedsheet|Home|2499|🛏️|60,70,75,95,30,80
+Soy wax candle|Home|599|🕯️|75,70,80,70,75,50
+Recycled glass vase|Home|899|🏺|70,95,80,60,65,90
+Eco-friendly cleaner refill|Home|299|🧽|80,75,85,75,70,60
+Paper-plastic wallpaper|Home|1499|🖼️|25,20,30,30,35,50
+Rainwater planter|Home|1899|🪴|85,80,70,65,95,85
+Recycled-fleece blanket|Outdoor|1999|🧣|65,95,70,70,55,80
+Reusable steel bottle|Outdoor|799|🍶|75,80,85,60,75,100
+Solar camping lantern|Outdoor|1299|🏮|80,60,70,55,70,75
+Single-use rain poncho|Outdoor|149|🌧️|8,5,10,10,20,3
+Bio-degradable tent pegs|Outdoor|599|⛺|85,70,80,70,80,60
+Mystery bamboo desk|Home|5999|🪑|-,-,-,-,-,-
+Imported organic soap|Personal Care|399|🧼|80,-,-,85,-,-
+Unlabelled travel mug|Outdoor|649|☕|-,60,-,-,70,-
+Generic yoga mat|Outdoor|1199|🧘|-,-,40,-,-,60
+Artisan jute rug|Home|2199|🧶|-,80,-,70,-,75
+Unknown brand thermos|Kitchen|999|🫖|-,-,-,-,50,80

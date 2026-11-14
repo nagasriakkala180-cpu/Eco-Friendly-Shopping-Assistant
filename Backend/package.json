@@ -1,0 +1,19 @@
+{
+  "name": "greencart",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "reseed": "node -e \"require('fs').rmSync('greencart.db',{force:true});require('./db')\" && echo Reseeded"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.3.0",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.10",
+    "express": "^4.22.3",
+    "mongoose": "^9.12.1"
+  },
+  "description": "",
+  "keywords": [],
+  "type": "commonjs"
+}

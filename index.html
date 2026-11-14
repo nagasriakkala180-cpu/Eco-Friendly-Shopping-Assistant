@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GreenCart – Eco-rated shopping</title>
+<style>
+:root{--bg:#f4f8f2;--sf:#fff;--tx:#14261a;--mu:#506656;--bd:#d3e0d1;--ac:#2e7d32;--acx:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0f1a12;--sf:#182319;--tx:#e6f0e6;--mu:#a2b8a5;--bd:#2b3d2e;--ac:#66bb6a;--acx:#0f1a12}}
+:root[data-theme=dark]{--bg:#0f1a12;--sf:#182319;--tx:#e6f0e6;--mu:#a2b8a5;--bd:#2b3d2e;--ac:#66bb6a;--acx:#0f1a12}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid #1976d2;outline-offset:2px}
+header{position:sticky;top:0;z-index:20;background:var(--sf);border-bottom:1px solid var(--bd);display:flex;gap:.75rem;align-items:center;padding:.6rem 1rem;flex-wrap:wrap}
+header h1{font-size:1.25rem;margin:0;color:var(--ac)}
+.sp{flex:1}
+.btn{background:var(--sf);border:1px solid var(--bd);border-radius:8px;padding:.4rem .8rem}
+.btn.pri{background:var(--ac);color:var(--acx);border-color:var(--ac);font-weight:600}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.wrap{display:grid;grid-template-columns:270px 1fr;gap:1.25rem;max-width:1300px;margin:0 auto;padding:1rem}
+aside{position:sticky;top:64px;align-self:start;max-height:calc(100vh - 80px);overflow:auto;background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:1rem}
+aside h2{font-size:1rem;margin:.9rem 0 .4rem}aside h2:first-child{margin-top:0}
+aside label{display:flex;gap:.5rem;align-items:center;padding:.15rem 0}
+#fbtn,#close{display:none}
+.bar{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:.6rem}
+.bar input[type=search],.bar select{padding:.45rem .7rem;border:1px solid var(--bd);border-radius:8px;background:var(--sf)}
+.bar input[type=search]{flex:1;min-width:160px}
+.chips{display:flex;gap:.4rem;flex-wrap:wrap;margin:.4rem 0}
+.chip{background:var(--sf);border:1px solid var(--ac);border-radius:99px;padding:.1rem .7rem;font-size:.85rem}
+.legend{display:flex;gap:.4rem;flex-wrap:wrap;margin:.5rem 0 1rem;font-size:.85rem;color:var(--mu);align-items:center}
+.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:1rem;display:flex;flex-direction:column;gap:.4rem;transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.12)}
+.pic{font-size:3rem;text-align:center;background:var(--bg);border-radius:8px;padding:.5rem}
+.card h3{margin:0;font-size:1rem}
+.meta{color:var(--mu);font-size:.85rem}
+.price{font-weight:700}
+.badge{display:inline-flex;gap:.35rem;align-items:center;border-radius:6px;padding:.15rem .5rem;font-weight:700;font-size:.85rem;width:fit-content}
+.gA{background:#1b5e20;color:#fff}.gB{background:#558b2f;color:#fff}.gC{background:#f9a825;color:#1a1a1a}.gD{background:#e65100;color:#fff}.gE{background:#c62828;color:#fff}.gF{background:#7f0000;color:#fff;border:2px dashed #fff}
+.warn{background:#fff3cd;color:#5c4400;border:1px solid #e0b100;border-radius:6px;padding:.1rem .5rem;font-size:.8rem;width:fit-content}
+.row{display:flex;gap:.4rem;align-items:center;margin-top:auto;flex-wrap:wrap}
+dialog{background:var(--sf);color:var(--tx);border:1px solid var(--bd);border-radius:12px;max-width:min(96vw,1000px);width:100%}
+dialog::backdrop{background:rgba(0,0,0,.5)}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:560px}
+th,td{border:1px solid var(--bd);padding:.45rem .6rem;text-align:left;vertical-align:top}
+tbody th{position:sticky;left:0;background:var(--sf);z-index:1}
+td.best{background:rgba(76,175,80,.25);font-weight:700}
+#tray{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--sf);border-top:2px solid var(--ac);padding:.6rem 1rem calc(.6rem + env(safe-area-inset-bottom,0px));display:none;gap:.6rem;align-items:center;flex-wrap:wrap}
+#tray.on{display:flex}
+.empty{text-align:center;padding:3rem 1rem;color:var(--mu)}
+.sk{height:260px;border-radius:12px;background:linear-gradient(90deg,var(--sf),var(--bd),var(--sf));background-size:200% 100%;animation:sh 1.2s infinite}
+@keyframes sh{to{background-position:-200% 0}}
+.sr{position:absolute;left:-9999px}
+.wl{border:1px solid var(--bd);border-radius:8px;padding:.6rem;margin:.5rem 0}
+@media(max-width:800px){
+.wrap{grid-template-columns:1fr}
+#fbtn{display:inline-block}
+aside{position:fixed;left:0;right:0;bottom:0;top:auto;max-height:80vh;z-index:40;border-radius:16px 16px 0 0;transform:translateY(105%);transition:transform .25s}
+aside.open{transform:none}#close{display:inline-block;float:right}}
+</style></head><body>
+<header><h1>🌿 GreenCart</h1><span class="meta">Eco-rated products, A–F</span><span class="sp"></span>
+<button class="btn" id="fbtn" aria-expanded="false">☰ Filters</button>
+<button class="btn" id="wlb">♥ Wishlists</button>
+<button class="btn" id="th" aria-label="Toggle light/dark theme">◐ Theme</button></header>
+<div class="wrap">
+<aside id="side" aria-label="Filters">
+<button class="btn" id="close">Close ✕</button>
+<h2>Eco grade</h2><div id="fg"></div>
+<h2>Max price: <output id="po"></output></h2><input type="range" id="pr" min="100" max="10000" step="100" value="10000" style="width:100%" aria-label="Maximum price">
+<h2>Category</h2><div id="fc"></div>
+<h2>Data quality</h2><label><input type="checkbox" id="ver"> Verified data only</label>
+<button class="btn" id="clr" style="margin-top:1rem;width:100%">Clear all</button>
+</aside>
+<main>
+<div class="bar"><input type="search" id="q" placeholder="Search products…" aria-label="Search products">
+<select id="so" aria-label="Sort"><option value="eco">Best eco-score</option><option value="pa">Lowest price</option><option value="pd">Highest price</option><option value="new">Newest</option></select></div>
+<div class="chips" id="chips"></div>
+<p id="cnt" aria-live="polite" class="meta"></p>
+<div class="legend" id="lg"></div>
+<div class="grid" id="grid" aria-busy="true"></div>
+</main></div>
+<div id="tray" role="region" aria-label="Compare tray"><strong id="tt"></strong><span id="ti" class="meta"></span><span class="sp"></span><button class="btn" id="tc">Clear</button><button class="btn pri" id="tg">Compare</button></div>
+<p id="msg" class="sr" role="status" aria-live="assertive"></p>
+<dialog id="dc" aria-label="Product comparison"><button class="btn" onclick="dc.close()" style="float:right">Close ✕</button><h2>Comparison</h2><div class="tw" id="ct"></div></dialog>
+<dialog id="dw" aria-label="Wishlists"><button class="btn" onclick="dw.close()" style="float:right">Close ✕</button><h2 id="wt">Wishlists</h2><div id="wb"></div>
+<form id="wf" style="display:flex;gap:.4rem;margin-top:.8rem"><input id="wn" placeholder="New wishlist name, e.g. Eco Kitchen" aria-label="New wishlist name" style="flex:1;padding:.4rem;border:1px solid var(--bd);border-radius:8px;background:var(--bg)" maxlength="40"><button class="btn pri">Create</button></form></dialog>
+<script>
+const $=id=>document.getElementById(id);
+const G={A:['★','Excellent'],B:['◆','Good'],C:['●','Fair'],D:['▲','Poor'],E:['■','Very poor'],F:['✖','Worst']};
+const FIELDS=['Carbon footprint','Recycled materials','Packaging','Ethical certification','Water use','Durability'];
+const W=[.3,.2,.15,.15,.1,.1];
+const RAW=`Bamboo cutlery set|Kitchen|499|🥢|92,90,88,70,85,75
+Stainless steel straws|Kitchen|299|🥤|80,85,90,60,78,95
+Beeswax food wraps|Kitchen|449|🐝|88,70,92,75,80,60
+Glass storage jars|Kitchen|899|🫙|70,92,80,50,60,95
+Cast iron skillet|Kitchen|1999|🍳|55,60,70,40,50,100
+Plastic cling film|Kitchen|149|🧻|10,5,15,20,30,5
+Compost bin|Kitchen|1299|♻️|90,85,70,65,80,80
+Coconut bowl set|Kitchen|599|🥥|93,80,85,80,88,70
+Disposable foam plates|Kitchen|99|🍽️|5,8,10,10,20,2
+Organic cotton tee|Fashion|899|👕|65,70,80,95,35,60
+Recycled PET jacket|Fashion|3499|🧥|60,92,75,70,60,85
+Hemp tote bag|Fashion|399|👜|85,75,90,80,75,85
+Fast-fashion polyester top|Fashion|349|👚|15,10,20,15,25,15
+Cork sandals|Fashion|1599|🩴|78,70,70,75,70,80
+Leather boots (conventional)|Fashion|4999|🥾|30,20,40,35,25,90
+Linen shirt|Fashion|1799|👔|75,60,85,80,60,75
+Solid shampoo bar|Personal Care|349|🧼|90,85,95,80,90,70
+Bamboo toothbrush|Personal Care|149|🪥|92,88,90,70,90,60
+Plastic razor pack|Personal Care|199|🪒|15,10,20,20,40,10
+Refillable deodorant|Personal Care|499|🧴|80,85,85,85,70,90
+Reef-safe sunscreen|Personal Care|699|🧴|70,60,70,90,65,50
+Aerosol body spray|Personal Care|299|💨|20,10,15,20,35,10
+Solar power bank|Electronics|2499|🔋|70,60,55,50,60,70
+Refurbished smartphone|Electronics|14999|📱|85,90,60,60,50,60
+Fairphone-style modular phone|Electronics|39999|📲|65,85,70,90,55,95
+LED bulb 4-pack|Electronics|399|💡|75,60,65,50,80,85
+Disposable vape|Electronics|799|💨|5,5,10,10,20,2
+Wireless earbuds (recycled)|Electronics|2999|🎧|55,70,60,55,50,45
+Organic cotton bedsheet|Home|2499|🛏️|60,70,75,95,30,80
+Soy wax candle|Home|599|🕯️|75,70,80,70,75,50
+Recycled glass vase|Home|899|🏺|70,95,80,60,65,90
+Eco-friendly cleaner refill|Home|299|🧽|80,75,85,75,70,60
+Paper-plastic wallpaper|Home|1499|🖼️|25,20,30,30,35,50
+Rainwater planter|Home|1899|🪴|85,80,70,65,95,85
+Recycled-fleece blanket|Outdoor|1999|🧣|65,95,70,70,55,80
+Reusable steel bottle|Outdoor|799|🍶|75,80,85,60,75,100
+Solar camping lantern|Outdoor|1299|🏮|80,60,70,55,70,75
+Single-use rain poncho|Outdoor|149|🌧️|8,5,10,10,20,3
+Bio-degradable tent pegs|Outdoor|599|⛺|85,70,80,70,80,60
+Mystery bamboo desk|Home|5999|🪑|-,-,-,-,-,-
+Imported organic soap|Personal Care|399|🧼|80,-,-,85,-,-
+Unlabelled travel mug|Outdoor|649|☕|-,60,-,-,70,-
+Generic yoga mat|Outdoor|1199|🧘|-,-,40,-,-,60
+Artisan jute rug|Home|2199|🧶|-,80,-,70,-,75
+Unknown brand thermos|Kitchen|999|🫖|-,-,-,-,50,80`;
+const P=RAW.split('\n').map((l,i)=>{const [n,c,p,e,s]=l.split('|');const v=s.split(',').map(x=>x==='-'?null:+x);
+let tw=0,t=0;v.forEach((x,j)=>{if(x!=null){tw+=W[j];t+=x*W[j]}});
+const sc=tw?Math.round(t/tw):0,miss=v.filter(x=>x==null).length;
+const g=!tw?'F':sc>=80?'A':sc>=65?'B':sc>=50?'C':sc>=35?'D':sc>=20?'E':'F';
+return{id:i+1,n,c,p:+p,e,v,sc,g,prov:miss>0,miss,conf:miss==0?'High':miss<=2?'Medium':'Low',nu:i}});
+const CATS=[...new Set(P.map(p=>p.c))];
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const inr=n=>'₹'+n.toLocaleString('en-IN');
+const badge=p=>`<span class="badge g${p.g}" aria-label="Eco grade ${p.g}${p.prov?' provisional':''}, ${G[p.g][1]}">${G[p.g][0]} ${p.g}${p.prov?'*':''} – ${G[p.g][1]}</span>`;
+let F={g:new Set(),c:new Set(),max:10000,ver:false,q:'',so:'eco'},cmp=new Set(),WL=[];
+try{WL=JSON.parse(localStorage.getItem('gc_wl')||'[]')}catch(e){}
+if(!WL.length)WL=[{id:1,name:'My Eco Wishlist',items:[]}];
+const saveWL=()=>{try{localStorage.setItem('gc_wl',JSON.stringify(WL))}catch(e){}};
+const say=t=>{$('msg').textContent='';setTimeout(()=>$('msg').textContent=t,50)};
+$('fg').innerHTML=Object.keys(G).map(k=>`<label><input type="checkbox" data-g="${k}"> <span class="badge g${k}">${G[k][0]} ${k}</span> ${G[k][1]}</label>`).join('');
+$('fc').innerHTML=CATS.map(c=>`<label><input type="checkbox" data-c="${c}"> ${c}</label>`).join('');
+$('lg').innerHTML='<b>Scale:</b> '+Object.keys(G).map(k=>`<span class="badge g${k}">${G[k][0]} ${k} ${G[k][1]}</span>`).join('')+' <span>* = provisional (missing data)</span>';
+function filtered(){let r=P.filter(p=>(!F.g.size||F.g.has(p.g))&&(!F.c.size||F.c.has(p.c))&&p.p<=F.max&&(!F.ver||!p.prov)&&p.n.toLowerCase().includes(F.q));
+const s={eco:(a,b)=>b.sc-a.sc,pa:(a,b)=>a.p-b.p,pd:(a,b)=>b.p-a.p,new:(a,b)=>b.nu-a.nu}[F.so];return r.sort(s)}
+function render(){const r=filtered();$('po').textContent=inr(F.max);
+$('cnt').textContent=`${r.length} product${r.length==1?'':'s'} found`;
+const ch=[...[...F.g].map(g=>['g',g,'Grade '+g]),...[...F.c].map(c=>['c',c,c])];
+if(F.max<10000)ch.push(['max','','Up to '+inr(F.max)]);if(F.ver)ch.push(['ver','','Verified only']);
+$('chips').innerHTML=ch.map(x=>`<button class="chip" data-t="${x[0]}" data-v="${x[1]}" aria-label="Remove filter ${x[2]}">${x[2]} ✕</button>`).join('');
+$('grid').setAttribute('aria-busy','false');
+$('grid').innerHTML=r.length?r.map(p=>`<article class="card"><div class="pic" aria-hidden="true">${p.e}</div><h3>${p.n}</h3>
+<div class="meta">${p.c}</div><div class="price">${inr(p.p)}</div>${badge(p)}
+<div class="meta" title="Score = weighted mix of carbon 30%, materials 20%, packaging 15%, ethics 15%, water 10%, durability 10%">Score ${p.sc}/100 · Data confidence: ${p.conf}</div>
+${p.prov?`<div class="warn">⚠ No eco-data${p.miss<6?` (${p.miss} of 6 fields missing)`:''}</div>`:''}
+<div class="row"><label><input type="checkbox" data-cmp="${p.id}" ${cmp.has(p.id)?'checked':''}> Compare</label>
+<button class="btn" data-wl="${p.id}" aria-label="Add ${p.n} to wishlist">${WL.some(w=>w.items.includes(p.id))?'♥':'♡'} Wishlist</button></div></article>`).join(''):'<div class="empty" style="grid-column:1/-1"><h3>No products match</h3><p>Try clearing some filters.</p></div>';
+tray()}
+function tray(){const n=cmp.size;$('tray').classList.toggle('on',n>0);$('tt').textContent=`Compare (${n}/5)`;
+$('ti').textContent=n<2?'Select at least 2 products':[...cmp].map(i=>P[i-1].e).join(' ');$('tg').disabled=n<2}
+document.addEventListener('change',e=>{const t=e.target;
+if(t.dataset.g){t.checked?F.g.add(t.dataset.g):F.g.delete(t.dataset.g);render()}
+else if(t.dataset.c){t.checked?F.c.add(t.dataset.c):F.c.delete(t.dataset.c);render()}
+else if(t.dataset.cmp){const id=+t.dataset.cmp;if(t.checked){if(cmp.size>=5){t.checked=false;say('You can compare at most 5 products.');return}cmp.add(id)}else cmp.delete(id);tray()}
+else if(t.id=='ver'){F.ver=t.checked;render()}
+else if(t.id=='so'){F.so=t.value;render()}});
+$('pr').oninput=e=>{F.max=+e.target.value;render()};
+$('q').oninput=e=>{F.q=e.target.value.toLowerCase();render()};
+function clearAll(){F={g:new Set(),c:new Set(),max:10000,ver:false,q:'',so:F.so};$('q').value='';$('pr').value=10000;$('ver').checked=false;document.querySelectorAll('[data-g],[data-c]').forEach(c=>c.checked=false);render()}
+$('clr').onclick=clearAll;
+$('chips').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;const{t,v}=b.dataset;
+if(t=='g'){F.g.delete(v);document.querySelector(`[data-g="${v}"]`).checked=false}
+else if(t=='c'){F.c.delete(v);document.querySelector(`[data-c="${v}"]`).checked=false}
+else if(t=='max'){F.max=10000;$('pr').value=10000}else{F.ver=false;$('ver').checked=false}render()};
+$('grid').onclick=e=>{const b=e.target.closest('[data-wl]');if(b)openWL(+b.dataset.wl)};
+$('tc').onclick=()=>{cmp.clear();render()};
+$('tg').onclick=()=>{if(cmp.size<2){say('Select at least 2 products.');return}
+const ps=[...cmp].map(i=>P[i-1]);
+const best=(f,low)=>{const vals=ps.map(f).filter(x=>x!=null);return vals.length?(low?Math.min(...vals):Math.max(...vals)):null};
+const row=(l,f,low)=>{const b=best(f,low);return `<tr><th scope="row">${l}</th>${ps.map(p=>{const x=f(p);return `<td class="${x!=null&&x===b&&ps.length>1?'best':''}">${x==null?'<span class="warn">No data</span>':x}</td>`}).join('')}</tr>`};
+$('ct').innerHTML=`<table><caption class="sr">Eco comparison of selected products</caption><thead><tr><th scope="col">Feature</th>${ps.map(p=>`<th scope="col">${p.e} ${p.n}</th>`).join('')}</tr></thead><tbody>
+<tr><th scope="row">Category</th>${ps.map(p=>`<td>${p.c}</td>`).join('')}</tr>
+${row('Price (₹, lower is better)',p=>p.p,true)}
+<tr><th scope="row">Overall grade</th>${ps.map(p=>`<td>${badge(p)}</td>`).join('')}</tr>
+${row('Overall score /100',p=>p.sc)}
+${FIELDS.map((f,j)=>row(f,p=>p.v[j])).join('')}
+<tr><th scope="row">Data confidence</th>${ps.map(p=>`<td>${p.conf}${p.prov?`<br><span class="warn">⚠ ${p.miss} field(s) missing</span>`:''}</td>`).join('')}</tr></tbody></table><p class="meta">Highlighted cell = best value in that row.</p>`;
+$('dc').showModal()};
+function openWL(pid){$('wt').textContent=pid?'Add “'+P[pid-1].n+'” to a wishlist':'Wishlists';wlpid=pid;drawWL();$('dw').showModal()}
+let wlpid=0;
+function avg(w){const ps=w.items.map(i=>P[i-1]);if(!ps.length)return'–';const s=Math.round(ps.reduce((a,p)=>a+p.sc,0)/ps.length);return (s>=80?'A':s>=65?'B':s>=50?'C':s>=35?'D':s>=20?'E':'F')+' ('+s+')'}
+function drawWL(){$('wb').innerHTML=WL.map(w=>`<div class="wl"><b>${esc(w.name)}</b> <span class="meta">· ${w.items.length} items · Avg grade: ${avg(w)}</span>
+<div class="row">${wlpid?`<button class="btn pri" data-tog="${w.id}">${w.items.includes(wlpid)?'Remove from this list':'Add to this list'}</button>`:''}
+<button class="btn" data-ren="${w.id}">Rename</button><button class="btn" data-del="${w.id}">Delete</button></div>
+<ul>${w.items.map(i=>`<li>${P[i-1].e} ${P[i-1].n} – ${badge(P[i-1])} <button class="btn" data-rm="${w.id}:${i}" aria-label="Remove ${P[i-1].n}">✕</button></li>`).join('')||'<li class="meta">Empty</li>'}</ul></div>`).join('')}
+$('wb').onclick=e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset;
+if(d.tog){const w=WL.find(x=>x.id==d.tog);const k=w.items.indexOf(wlpid);k<0?w.items.push(wlpid):w.items.splice(k,1)}
+else if(d.ren){const w=WL.find(x=>x.id==d.ren);const n=prompt('New name',w.name);if(n&&n.trim())w.name=n.trim().slice(0,40)}
+else if(d.del){if(confirm('Delete this wishlist?'))WL=WL.filter(x=>x.id!=d.del)}
+else if(d.rm){const[a,i]=d.rm.split(':');const w=WL.find(x=>x.id==a);w.items=w.items.filter(x=>x!=i)}
+saveWL();drawWL();render()};
+$('wf').onsubmit=e=>{e.preventDefault();const n=$('wn').value.trim();if(!n)return;WL.push({id:Date.now(),name:n,items:[]});$('wn').value='';saveWL();drawWL()};
+$('wlb').onclick=()=>openWL(0);
+$('fbtn').onclick=()=>{$('side').classList.add('open');$('fbtn').setAttribute('aria-expanded','true')};
+$('close').onclick=()=>{$('side').classList.remove('open');$('fbtn').setAttribute('aria-expanded','false')};
+$('th').onclick=()=>{const r=document.documentElement;const d=r.dataset.theme?r.dataset.theme=='dark':matchMedia('(prefers-color-scheme:dark)').matches;r.dataset.theme=d?'light':'dark'};
+$('grid').innerHTML=Array(8).fill('<div class="sk"></div>').join('');
+setTimeout(render,400);
+</script></body></html>
